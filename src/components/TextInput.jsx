@@ -2,6 +2,8 @@ import { TbEdit } from "react-icons/tb";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { RiDraggable } from "react-icons/ri";
+
 
 import { useState } from "react";
 
@@ -43,11 +45,11 @@ const TextInput = ({ todoData, setTodoData }) => {
     return (
         todoData.map(({ task, date, status }, index) => (
             <div key={index} className="flex justify-between items-center gap-4 pb-3">
-                                    {/* <span>{`${index+1}.`}</span> */}
-
                 <div className="flex gap-4 w-full p-3 justify-between items-center shadow-md bg-blue-200 rounded-lg" role="button" onClick={()=>""}>
+                {/* <span>{`${index+1}.`}</span> */}
+                <RiDraggable />
                 {
-                    editTodo === index ? <input type="text"  value={todoData[index].task} onChange={(e)=> {handleAddNewTask(e, index)}} className="border-2 rounded-md w-[50%]" /> : <h2 role="button" onClick={() => { handleTodoDataEdit(index) }}>{task}</h2>
+                    editTodo === index ? <input type="text" value={todoData[index].task} onChange={(e)=> {handleAddNewTask(e, index)}} className="border-2 rounded-md w-[50%]" /> : <h2 role="button" onClick={() => { handleTodoDataEdit(index) }}>{task}</h2>
                 }
                 <div className="flex gap-4">
                 <span className="text-xs">{date}</span>
@@ -56,7 +58,7 @@ const TextInput = ({ todoData, setTodoData }) => {
                 </div>
                 <div className="flex gap-4">
                     <IoIosCheckmarkCircle size={20} onClick={()=>{handleTaskMarking(index)}} />
-                    <MdOutlineDeleteOutline size={20} role="button" onClick={() => handleTodoDataDeletion(index)} />
+                    <MdOutlineDeleteOutline size={20} role="button" onClick={() => handleTodoDataDeletion(index)} className="hover:text-red-500 ease-in hover:scale-90" />
                 </div>
             </div>
         ))
