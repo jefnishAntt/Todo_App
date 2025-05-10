@@ -8,7 +8,7 @@ import { RiDraggable } from "react-icons/ri";
 import { useState } from "react";
 
 
-const TextInput = ({ todoData, setTodoData }) => {
+const TextInput = ({ todoData, filteredTasks, setTodoData }) => {
     const [editTodo, setEditTodo] = useState(null);
 
     const handleTodoDataEdit = (currIndex) => {
@@ -43,13 +43,14 @@ const TextInput = ({ todoData, setTodoData }) => {
     }
 
     return (
-        todoData.map(({ task, date, status }, index) => (
+        filteredTasks().map(({ task, date, status }, index) => (
             <div key={index} className="flex justify-between items-center gap-4 pb-3">
                 <div className="flex gap-4 w-full p-3 justify-between items-center shadow-md bg-blue-200 rounded-lg" role="button" onClick={()=>""}>
                 {/* <span>{`${index+1}.`}</span> */}
                 <RiDraggable />
                 {
-                    editTodo === index ? <input type="text" value={todoData[index].task} onChange={(e)=> {handleAddNewTask(e, index)}} className="border-2 rounded-md w-[50%]" /> : <h2 role="button" onClick={() => { handleTodoDataEdit(index) }}>{task}</h2>
+                    editTodo === index ? <input type="text" 
+                    value={task} onChange={(e)=> {handleAddNewTask(e, index)}} className="border-2 rounded-md w-[50%]" /> : <h2 role="button" onClick={() => { handleTodoDataEdit(index) }}>{task}</h2>
                 }
                 <div className="flex gap-4">
                 <span className="text-xs">{date}</span>
